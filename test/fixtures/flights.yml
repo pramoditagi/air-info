@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  std: 2025-06-19 18:03:35
+  etd: 2025-06-19 18:03:35
+  airline: MyString
+  flight_no: MyString
+  destination: MyString
+  gate: MyString
+  status: MyString
+
+two:
+  std: 2025-06-19 18:03:35
+  etd: 2025-06-19 18:03:35
+  airline: MyString
+  flight_no: MyString
+  destination: MyString
+  gate: MyString
+  status: MyString
