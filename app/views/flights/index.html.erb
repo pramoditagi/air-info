@@ -1,14 +1,30 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Flights</h1>
+<h1 class="board-title">Departures</h1>
 
-<div id="flights">
-  <% @flights.each do |flight| %>
-    <%= render flight %>
-    <p>
-      <%= link_to "Show this flight", flight %>
-    </p>
-  <% end %>
-</div>
-
-<%= link_to "New flight", new_flight_path %>
+<table class="flight-board">
+  <thead>
+    <tr>
+      <th>STD</th>
+      <th>ETD</th>
+      <th>Airline</th>
+      <th>Flight No</th>
+      <th>Destination</th>
+      <th>Status</th>
+      <th>Gate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @flights.each do |flight| %> 
+      <tr>
+        <td><%= flight.std.strftime('%H:%M') %></td>
+        <td><%= flight.etd.strftime('%H:%M') %></td>
+        <td><%= flight.airline %></td>
+        <td><%= flight.flight_no %></td>
+        <td><%= flight.destination %></td>  
+        <td><%= flight.status %></td>
+        <td><%= flight.gate %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
