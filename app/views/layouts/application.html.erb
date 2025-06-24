@@ -17,9 +17,12 @@
         <%= image_tag "logo.png", alt: "Airport Logo", class: "logo" %>
         <span class="nav-title">AirInfo</span>
       </div>
-      <div class="navbar-right">
-        <%= link_to 'Add New Flight ✈️', new_flight_path, class: 'nav-link' %>
-      </div>
+      <!-- We don't want to show the add new flight button on the new flight page -->
+      <% if controller.action_name != 'new' %>
+        <div class="navbar-right">
+          <%= link_to 'Add New Flight ✈️', new_flight_path, class: 'nav-link' %>
+        </div>
+      <% end %>
     </nav>
     <%= yield %>
   </body>
