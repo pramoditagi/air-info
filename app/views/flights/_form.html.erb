@@ -1,8 +1,9 @@
-<%= form_with(model: flight) do |form| %>
+<%= form_with(model: flight, local: true) do |form| %>
   <% if flight.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(flight.errors.count, "error") %> prohibited this flight from being saved:</h2>
-
+      <h2>
+        <%= pluralize(flight.errors.count, "error") %> prohibited this flight from being saved:
+      </h2>
       <ul>
         <% flight.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -11,42 +12,43 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :std, style: "display: block" %>
-    <%= form.datetime_field :std %>
+  <div class="form-group">
+    <%= form.label :std, "STD" %>
+    <%= form.datetime_local_field :std, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :etd, style: "display: block" %>
-    <%= form.datetime_field :etd %>
+  <div class="form-group">
+    <%= form.label :etd, "ETD" %>
+    <%= form.datetime_local_field :etd, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :airline, style: "display: block" %>
-    <%= form.text_field :airline %>
+  <div class="form-group">
+    <%= form.label :airline %>
+    <%= form.text_field :airline, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :flight_no, style: "display: block" %>
-    <%= form.text_field :flight_no %>
+  <div class="form-group">
+    <%= form.label :flight_no, "Flight No" %>
+    <%= form.text_field :flight_no, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :destination, style: "display: block" %>
-    <%= form.text_field :destination %>
+  <div class="form-group">
+    <%= form.label :destination %>
+    <%= form.text_field :destination, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :gate, style: "display: block" %>
-    <%= form.text_field :gate %>
+  <div class="form-group">
+    <%= form.label :status %>
+    <%= form.select :status, ['Arrived', 'Delayed', 'On Time'], {}, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :status, style: "display: block" %>
-    <%= form.text_field :status %>
+  <div class="form-group">
+    <%= form.label :gate %>
+    <%= form.text_field :gate, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="form-actions" style="display: flex; gap: 1rem;">
+    <%= form.submit "Create Flight", class: "submit-button", style: "width: 50%;" %>
+    <%= link_to 'Back to Board', flights_path, class: 'back-button', style: "width: 50%; text-align: center;" %>
   </div>
 <% end %>
