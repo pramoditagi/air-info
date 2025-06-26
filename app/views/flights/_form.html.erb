@@ -39,7 +39,7 @@
 
   <div class="form-group">
     <%= form.label :status %>
-    <%= form.select :status, ['Arrived', 'Delayed', 'On Time'], {}, class: "form-control" %>
+    <%= form.select :status, ['Arrived', 'Delayed', 'On Time', 'Cancelled', 'Departed', 'Boarding', 'Security', 'Check-in'], {}, class: "form-control" %>
   </div>
 
   <div class="form-group">
@@ -49,6 +49,6 @@
 
   <div class="form-actions" style="display: flex; gap: 1rem;">
     <%= form.submit "Create Flight", class: "submit-button", style: "width: 50%;" %>
-    <%= link_to 'Back to Board', flights_path, class: 'back-button', style: "width: 50%; text-align: center;" %>
+    <button type="button" onclick="window.location.href='<%= flights_path %>'" class="back-button" style="width: 50%; text-align: center;">Back to Board</button>
   </div>
 <% end %>
