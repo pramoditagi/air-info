@@ -2,29 +2,36 @@
 
 <h1 class="board-title">Departures</h1>
 
-<table class="flight-board">
-  <thead>
-    <tr>
-      <th>STD</th>
-      <th>ETD</th>
-      <th>Airline</th>
-      <th>Flight No</th>
-      <th>Destination</th>
-      <th>Status</th>
-      <th>Gate</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @flights.each do |flight| %> 
+<% if @flights.any? %>
+  <table class="flight-board">
+    <thead>
       <tr>
-        <td><%= flight.std.strftime('%H:%M') %></td>
-        <td><%= flight.etd.strftime('%H:%M') %></td>
-        <td><%= flight.airline %></td>
-        <td><%= flight.flight_no %></td>
-        <td><%= flight.destination %></td>  
-        <td><%= flight.status %></td>
-        <td><%= flight.gate %></td>
+        <th>STD</th>
+        <th>ETD</th>
+        <th>Airline</th>
+        <th>Flight No</th>
+        <th>Destination</th>
+        <th>Status</th>
+        <th>Gate</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @flights.each do |flight| %> 
+        <tr>
+          <td><%= flight.std.strftime('%H:%M') %></td>
+          <td><%= flight.etd.strftime('%H:%M') %></td>
+          <td><%= flight.airline %></td>
+          <td><%= flight.flight_no %></td>
+          <td><%= flight.destination %></td>  
+          <td><%= flight.status %></td>
+          <td><%= flight.gate %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="empty-state">
+    <p>No upcoming flights found.</p>
+    <p>All flights have departed or been completed.</p>
+  </div>
+<% end %>
