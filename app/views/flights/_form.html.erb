@@ -45,7 +45,19 @@
 
   <div class="form-group">
     <%= form.label :status %>
-    <%= form.select :status, ['Arrived', 'Delayed', 'On Time', 'Cancelled', 'Departed', 'Boarding', 'Security', 'Check-in'], {}, class: "form-control" %>
+    <%= form.select :status, [
+      'On Time',
+      'Delayed', 
+      'Check-in',
+      'Security',
+      'Gate Open',
+      'Boarding',
+      'Final Call',
+      'Last Call',
+      'Departed',
+      'Cancelled',
+      'Arrived'
+    ], {}, class: "form-control" %>
   </div>
 
   <div class="form-group">
