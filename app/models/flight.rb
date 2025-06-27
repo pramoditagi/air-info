@@ -10,6 +10,10 @@ class Flight < ApplicationRecord
   validate :etd_cannot_be_in_the_past
   
   scope :not_in_past, -> { where("std >= ? OR etd >= ?", Time.current, Time.current) }
+  scope :current_day, -> { 
+    where("DATE(std) = ? OR DATE(etd) = ?", Date.current, Date.current)
+      .where("std >= ? OR etd >= ?", Time.current, Time.current)
+  }
   scope :ordered_by_std, -> { order(:std) }
   
   private

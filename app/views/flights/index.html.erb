@@ -9,7 +9,11 @@
         <th>STD</th>
         <th>ETD</th>
         <th>Airline</th>
-        <th>Flight No</th>
+        <th class="tooltip-container">
+          Flight No
+          <span class="tooltip-icon">ⓘ</span>
+          <span class="tooltip-text">Click on flight number to view details, edit, or delete</span>
+        </th>
         <th>Destination</th>
         <th>Status</th>
         <th>Gate</th>
@@ -21,7 +25,7 @@
           <td><%= flight.std.strftime('%H:%M') %></td>
           <td><%= flight.etd.strftime('%H:%M') %></td>
           <td><%= flight.airline %></td>
-          <td><%= flight.flight_no %></td>
+          <td><%= link_to flight.flight_no, flight_path(flight) %></td>
           <td><%= flight.destination %></td>  
           <td><%= flight.status %></td>
           <td><%= flight.gate %></td>
