@@ -14,27 +14,33 @@
 
   <div class="form-group">
     <%= form.label :std, "STD" %>
-    <%= form.datetime_local_field :std, class: "form-control" %>
+    <%= form.datetime_local_field :std, 
+        class: "form-control", 
+        required: true,
+        min: Time.current.strftime('%Y-%m-%dT%H:%M') %>
   </div>
 
   <div class="form-group">
     <%= form.label :etd, "ETD" %>
-    <%= form.datetime_local_field :etd, class: "form-control" %>
+    <%= form.datetime_local_field :etd, 
+        class: "form-control", 
+        required: true,
+        min: Time.current.strftime('%Y-%m-%dT%H:%M') %>
   </div>
 
   <div class="form-group">
     <%= form.label :airline %>
-    <%= form.text_field :airline, class: "form-control" %>
+    <%= form.text_field :airline, class: "form-control", required: true %>
   </div>
 
   <div class="form-group">
     <%= form.label :flight_no, "Flight No" %>
-    <%= form.text_field :flight_no, class: "form-control" %>
+    <%= form.text_field :flight_no, class: "form-control", required: true %>
   </div>
 
   <div class="form-group">
     <%= form.label :destination %>
-    <%= form.text_field :destination, class: "form-control" %>
+    <%= form.text_field :destination, class: "form-control", required: true %>
   </div>
 
   <div class="form-group">
@@ -44,7 +50,7 @@
 
   <div class="form-group">
     <%= form.label :gate %>
-    <%= form.text_field :gate, class: "form-control" %>
+    <%= form.text_field :gate, class: "form-control", required: true %>
   </div>
 
   <div class="form-actions" style="display: flex; gap: 1rem;">
@@ -52,3 +58,21 @@
     <button type="button" onclick="window.location.href='<%= flights_path %>'" class="back-button" style="width: 50%; text-align: center;">Back to Board</button>
   </div>
 <% end %>
+
+<script>
+  // Update min attributes to current time when page loads
+  document.addEventListener('DOMContentLoaded', function() {
+    const now = new Date();
+    const currentDateTime = now.toISOString().slice(0, 16); // Format: YYYY-MM-DDTHH:MM
+    
+    const stdField = document.querySelector('input[name="flight[std]"]');
+    const etdField = document.querySelector('input[name="flight[etd]"]');
+    
+    if (stdField) {
+      stdField.min = currentDateTime;
+    }
+    if (etdField) {
+      etdField.min = currentDateTime;
+    }
+  });
+</script>

@@ -3,7 +3,7 @@ class FlightsController < ApplicationController
 
   # GET /flights or /flights.json
   def index
-    @flights = Flight.all
+    @flights = Flight.not_in_past.ordered_by_std
   end
 
   # GET /flights/1 or /flights/1.json
