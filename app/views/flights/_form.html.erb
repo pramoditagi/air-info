@@ -13,44 +13,18 @@
   <% end %>
 
   <div class="form-group">
-    <label class="form-label">Flight Type</label>
-    <div class="radio-group">
-      <label class="radio-label">
-        <input type="radio" name="flight_type" value="today" checked onchange="toggleDateTimeFields()">
-        Today's Flight (Time Only)
-      </label>
-      <label class="radio-label">
-        <input type="radio" name="flight_type" value="future" onchange="toggleDateTimeFields()">
-        Future Flight (Date & Time)
-      </label>
-    </div>
-  </div>
-
-  <div class="form-group" id="today-fields">
-    <%= form.label :std, "STD (Time)" %>
-    <%= form.time_field :std_time, 
+    <%= form.label :std, "STD" %>
+    <%= form.datetime_local_field :std, 
         class: "form-control", 
-        required: true %>
-  </div>
-
-  <div class="form-group" id="future-fields" style="display: none;">
-    <%= form.label :std, "STD (Date & Time)" %>
-    <%= form.datetime_local_field :std_datetime, 
-        class: "form-control", 
+        required: true,
         min: Time.current.strftime('%Y-%m-%dT%H:%M') %>
   </div>
 
-  <div class="form-group" id="today-fields-etd">
-    <%= form.label :etd, "ETD (Time)" %>
-    <%= form.time_field :etd_time, 
+  <div class="form-group">
+    <%= form.label :etd, "ETD" %>
+    <%= form.datetime_local_field :etd, 
         class: "form-control", 
-        required: true %>
-  </div>
-
-  <div class="form-group" id="future-fields-etd" style="display: none;">
-    <%= form.label :etd, "ETD (Date & Time)" %>
-    <%= form.datetime_local_field :etd_datetime, 
-        class: "form-control", 
+        required: true,
         min: Time.current.strftime('%Y-%m-%dT%H:%M') %>
   </div>
 
@@ -71,7 +45,19 @@
 
   <div class="form-group">
     <%= form.label :status %>
-    <%= form.select :status, ['Arrived', 'Delayed', 'On Time', 'Cancelled', 'Departed', 'Boarding', 'Security', 'Check-in'], {}, class: "form-control" %>
+    <%= form.select :status, [
+      'On Time',
+      'Delayed', 
+      'Check-in',
+      'Security',
+      'Gate Open',
+      'Boarding',
+      'Final Call',
+      'Last Call',
+      'Departed',
+      'Cancelled',
+      'Arrived'
+    ], {}, class: "form-control" %>
   </div>
 
   <div class="form-group">
@@ -90,64 +76,19 @@
 <% end %>
 
 <script>
-  function toggleDateTimeFields() {
-    const flightType = document.querySelector('input[name="flight_type"]:checked').value;
-    const todayFields = document.getElementById('today-fields');
-    const todayFieldsEtd = document.getElementById('today-fields-etd');
-    const futureFields = document.getElementById('future-fields');
-    const futureFieldsEtd = document.getElementById('future-fields-etd');
-    
-    if (flightType === 'today') {
-      todayFields.style.display = 'block';
-      todayFieldsEtd.style.display = 'block';
-      futureFields.style.display = 'none';
-      futureFieldsEtd.style.display = 'none';
-      
-      // Set required on today fields and remove from future fields
-      const todayStdField = todayFields.querySelector('input');
-      const todayEtdField = todayFieldsEtd.querySelector('input');
-      const futureStdField = futureFields.querySelector('input');
-      const futureEtdField = futureFieldsEtd.querySelector('input');
-      
-      if (todayStdField) todayStdField.required = true;
-      if (todayEtdField) todayEtdField.required = true;
-      if (futureStdField) futureStdField.required = false;
-      if (futureEtdField) futureEtdField.required = false;
-      
-      // Set min time for today's fields
-      const now = new Date();
-      const currentTime = now.toTimeString().slice(0, 5);
-      
-      if (todayStdField) todayStdField.min = currentTime;
-      if (todayEtdField) todayEtdField.min = currentTime;
-    } else {
-      todayFields.style.display = 'none';
-      todayFieldsEtd.style.display = 'none';
-      futureFields.style.display = 'block';
-      futureFieldsEtd.style.display = 'block';
-      
-      // Set required on future fields and remove from today fields
-      const todayStdField = todayFields.querySelector('input');
-      const todayEtdField = todayFieldsEtd.querySelector('input');
-      const futureStdField = futureFields.querySelector('input');
-      const futureEtdField = futureFieldsEtd.querySelector('input');
-      
-      if (todayStdField) todayStdField.required = false;
-      if (todayEtdField) todayEtdField.required = false;
-      if (futureStdField) futureStdField.required = true;
-      if (futureEtdField) futureEtdField.required = true;
-      
-      // Set min datetime for future fields
-      const now = new Date();
-      const currentDateTime = now.toISOString().slice(0, 16);
-      
-      if (futureStdField) futureStdField.min = currentDateTime;
-      if (futureEtdField) futureEtdField.min = currentDateTime;
-    }
-  }
-  
-  // Initialize on page load
+  // Set minimum datetime to current time when page loads
   document.addEventListener('DOMContentLoaded', function() {
-    toggleDateTimeFields();
+    const now = new Date();
+    const currentDateTime = now.toISOString().slice(0, 16); // Format: YYYY-MM-DDTHH:MM
+    
+    const stdField = document.querySelector('input[name="flight[std]"]');
+    const etdField = document.querySelector('input[name="flight[etd]"]');
+    
+    if (stdField) {
+      stdField.min = currentDateTime;
+    }
+    if (etdField) {
+      etdField.min = currentDateTime;
+    }
   });
 </script>
