@@ -17,7 +17,8 @@
     <%= form.datetime_local_field :std, 
         class: "form-control", 
         required: true,
-        min: Time.current.strftime('%Y-%m-%dT%H:%M') %>
+        min: Time.current.strftime('%Y-%m-%dT%H:%M'),
+        onclick: "this.showPicker()" %>
   </div>
 
   <div class="form-group">
@@ -25,7 +26,8 @@
     <%= form.datetime_local_field :etd, 
         class: "form-control", 
         required: true,
-        min: Time.current.strftime('%Y-%m-%dT%H:%M') %>
+        min: Time.current.strftime('%Y-%m-%dT%H:%M'),
+        onclick: "this.showPicker()" %>
   </div>
 
   <div class="form-group">
@@ -86,9 +88,21 @@
     
     if (stdField) {
       stdField.min = currentDateTime;
+      // Ensure datetime picker opens on click
+      stdField.addEventListener('click', function() {
+        if (this.showPicker) {
+          this.showPicker();
+        }
+      });
     }
     if (etdField) {
       etdField.min = currentDateTime;
+      // Ensure datetime picker opens on click
+      etdField.addEventListener('click', function() {
+        if (this.showPicker) {
+          this.showPicker();
+        }
+      });
     }
   });
 </script>

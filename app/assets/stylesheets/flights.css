@@ -71,6 +71,47 @@ body {
   box-sizing: border-box;
 }
 
+/* Datetime picker styling */
+input[type="datetime-local"] {
+  position: relative;
+  cursor: pointer;
+}
+
+input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+  background-color: #f2c500;
+  border-radius: 4px;
+  padding: 2px;
+  cursor: pointer;
+  filter: invert(1);
+  opacity: 0.8;
+  transition: opacity 0.2s ease-in-out;
+}
+
+input[type="datetime-local"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}
+
+/* Firefox datetime picker */
+input[type="datetime-local"]::-moz-calendar-picker-indicator {
+  background-color: #f2c500;
+  border-radius: 4px;
+  padding: 2px;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.2s ease-in-out;
+}
+
+input[type="datetime-local"]::-moz-calendar-picker-indicator:hover {
+  opacity: 1;
+}
+
+/* Focus state for better UX */
+input[type="datetime-local"]:focus {
+  outline: none;
+  border-color: #f2c500;
+  box-shadow: 0 0 0 2px rgba(242, 197, 0, 0.2);
+}
+
 .form-actions {
   margin-top: 1.5rem;
 }
