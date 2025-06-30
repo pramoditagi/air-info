@@ -1,10 +1,46 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @flight %>
+<div class="form-wrapper">
+  <h2>Flight Details</h2>
 
-<div>
-  <%= link_to "Edit this flight", edit_flight_path(@flight) %> |
-  <%= link_to "Back to flights", flights_path %>
+  <div class="form-group">
+    <label>STD</label>
+    <div><%= @flight.std.strftime('%Y-%m-%d %H:%M') %></div>
+  </div>
 
-  <%= button_to "Destroy this flight", @flight, method: :delete %>
+  <div class="form-group">
+    <label>ETD</label>
+    <div><%= @flight.etd.strftime('%Y-%m-%d %H:%M') %></div>
+  </div>
+
+  <div class="form-group">
+    <label>Airline</label>
+    <div><%= @flight.airline %></div>
+  </div>
+
+  <div class="form-group">
+    <label>Flight No</label>
+    <div><%= @flight.flight_no %></div>
+  </div>
+
+  <div class="form-group">
+    <label>Destination</label>
+    <div><%= @flight.destination %></div>
+  </div>
+
+  <div class="form-group">
+    <label>Status</label>
+    <div><%= @flight.status %></div>
+  </div>
+
+  <div class="form-group">
+    <label>Gate</label>
+    <div><%= @flight.gate %></div>
+  </div>
+
+  <div class="form-actions" style="display: flex; gap: 1rem;">
+    <%= link_to "Edit", edit_flight_path(@flight), class: "submit-button" %>
+    <%= link_to "Back to Board", flights_path, class: "back-button" %>
+    <%= button_to "Delete", @flight, method: :delete, data: { confirm: "Are you sure you want to delete this flight?" }, class: "delete-button" %>
+  </div>
 </div>
