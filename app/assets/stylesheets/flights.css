@@ -113,41 +113,49 @@ input[type="datetime-local"]:focus {
 }
 
 .form-actions {
+  display: flex;
+  gap: 1rem;
   margin-top: 1.5rem;
 }
 
-.submit-button {
-  width: 50%;
+.submit-button,
+.back-button,
+.delete-button {
+  flex: 1 1 0;
   padding: 0.8rem;
-  background: #005bac;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
   font-weight: bold;
   font-size: 1rem;
+  border-radius: 6px;
   cursor: pointer;
+  text-align: center;
+  border: none;
   transition: background 0.2s ease-in-out;
+  min-width: 0;
+  text-decoration: none;
 }
 
+.submit-button {
+  background: #005bac;
+  color: #fff;
+}
 .submit-button:hover {
   background: #004080;
 }
 
 .back-button {
-  width: 50%;
-  padding: 0.8rem;
   background: #333;
   color: #fff;
-  border: none;
-  border-radius: 6px;
-  font-weight: bold;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background 0.2s ease-in-out;
 }
-
 .back-button:hover {
   background: #484848;
+}
+
+.delete-button {
+  background: #d32f2f;
+  color: #fff;
+}
+.delete-button:hover {
+  background: #b71c1c;
 }
 
 .empty-state {
