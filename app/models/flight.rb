@@ -8,6 +8,7 @@ class Flight < ApplicationRecord
   
   validate :std_cannot_be_in_the_past
   validate :etd_cannot_be_in_the_past
+  validate :etd_cannot_be_before_std
   
   scope :not_in_past, -> { where("std >= ? OR etd >= ?", Time.current, Time.current) }
   scope :current_day, -> { 
@@ -27,6 +28,12 @@ class Flight < ApplicationRecord
   def etd_cannot_be_in_the_past
     if etd.present? && etd < Time.current
       errors.add(:etd, "cannot be in the past")
+    end
+  end
+
+  def etd_cannot_be_before_std
+    if etd.present? && std.present? && etd < std
+      errors.add(:etd, "cannot be before STD")
     end
   end
 end

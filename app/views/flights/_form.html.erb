@@ -1,12 +1,13 @@
 <%= form_with(model: flight, local: true) do |form| %>
   <% if flight.errors.any? %>
-    <div style="color: red">
-      <h2>
-        <%= pluralize(flight.errors.count, "error") %> prohibited this flight from being saved:
-      </h2>
+    <div class="error-box">
+      <div class="error-title">
+        <span class="error-icon">⚠️</span>
+        Please fix the following error(s):
+      </div>
       <ul>
-        <% flight.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+        <% flight.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
         <% end %>
       </ul>
     </div>
