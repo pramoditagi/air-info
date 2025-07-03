@@ -5,12 +5,12 @@
 
   <div class="form-group">
     <label>STD</label>
-    <div><%= @flight.std.strftime('%Y-%m-%d %H:%M') %></div>
+    <div><%= @flight.std.strftime('%H:%M') %></div>
   </div>
 
   <div class="form-group">
     <label>ETD</label>
-    <div><%= @flight.etd.strftime('%Y-%m-%d %H:%M') %></div>
+    <div><%= @flight.etd.strftime('%H:%M') %></div>
   </div>
 
   <div class="form-group">
