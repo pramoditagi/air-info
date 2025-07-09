@@ -333,3 +333,29 @@ input[type="datetime-local"]:focus {
   font-size: 1rem;
   margin-bottom: 0.2rem;
 }
+
+/* Status badge styles */
+.status-badge {
+  display: inline-block;
+  padding: 0.3em 0.8em;
+  border-radius: 1em;
+  font-weight: bold;
+  font-size: 1em;
+  margin: 0 0.2em;
+  color: #fff;
+  letter-spacing: 0.02em;
+  min-width: 90px;
+  text-align: center;
+}
+.status-on-time { background: #388e3c; }      /* Green */
+.status-delayed { background: #d32f2f; }      /* Red */
+.status-checkin { background: #1976d2; }      /* Blue */
+.status-security { background: #ffa000; }     /* Amber */
+.status-gate-open { background: #0288d1; }    /* Light Blue */
+.status-boarding { background: #7b1fa2; }     /* Purple */
+.status-final-call { background: #fbc02d; color: #222; } /* Yellow */
+.status-last-call { background: #f57c00; }    /* Orange */
+.status-departed { background: #616161; }     /* Grey */
+.status-cancelled { background: #b71c1c; }    /* Dark Red */
+.status-arrived { background: #388e3c; }      /* Green */
+.status-default { background: #757575; }      /* Default Grey */
