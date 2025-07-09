@@ -27,7 +27,7 @@
           <td><%= flight.airline %></td>
           <td><%= link_to flight.flight_no, flight_path(flight) %></td>
           <td><%= flight.destination %></td>  
-          <td><%= flight.status %></td>
+          <td><%= status_badge(flight.status) %></td>
           <td><%= flight.gate %></td>
         </tr>
       <% end %>
