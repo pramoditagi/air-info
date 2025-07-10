@@ -2,7 +2,7 @@ class Flight < ApplicationRecord
   validates :std, presence: true
   validates :etd, presence: true
   validates :airline, presence: true
-  validates :flight_no, presence: true
+  validates :flight_no, presence: true, uniqueness: true
   validates :destination, presence: true
   validates :gate, presence: true
   
