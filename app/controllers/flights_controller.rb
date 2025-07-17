@@ -6,6 +6,11 @@ class FlightsController < ApplicationController
     @flights = Flight.current_day.ordered_by_std
   end
 
+  # GET /flights or /flights.json
+  def past
+    @flights = Flight.where("std < ?", Time.current).order(std: :desc)
+  end
+
   # GET /flights/1 or /flights/1.json
   def show
   end
